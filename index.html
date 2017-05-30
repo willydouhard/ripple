@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<style>
+
+body {
+    display: flex;
+    margin: 0;
+    padding: 0;
+    width: 100vw;
+    height: 100vh;
+}
+
+</style>
+
+</head>
+
+<body>
+
+    <canvas id="canvas"/>
+
+    <script src="cubic_bezier.js"></script>
+    <script src="wave_container.js"></script>
+    <script src="wave.js"></script>
+
+    <script>
+    'use strict';
+
+    function setupCanvas() {
+        boundaries = parent.getBoundingClientRect();
+        canvas.width = boundaries.width;
+        canvas.height = boundaries.height;
+    }
+
+    function onClick(e) {
+        wave_container.push(e.clientX, e.clientY);
+    }
+
+    document.addEventListener('click', onClick);
+    window.addEventListener('resize', setupCanvas);
+
+    const canvas = document.body.querySelector('canvas');
+    const ctx = canvas.getContext('2d');
+    const parent = canvas.parentElement;
+    const wave_container = new WaveContainer();
+
+    var boundaries;
+    setupCanvas();
+
+    </script>
+
+
+</body>
+
+</html>
