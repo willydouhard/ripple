@@ -14,11 +14,24 @@ body {
     height: 100vh;
 }
 
+#helper {
+    position: fixed;
+    pointer-events: none;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2em;
+}
+
 </style>
 
 </head>
 
 <body>
+
+    <div id="helper">Click anywhere !</div>
 
     <canvas id="canvas"/>
 
@@ -36,6 +49,10 @@ body {
     }
 
     function onClick(e) {
+        if(!user_clicked) {
+            user_clicked = true;
+            document.body.removeChild(document.body.querySelector('#helper'));
+        }
         wave_container.push(e.clientX, e.clientY);
     }
 
@@ -46,6 +63,7 @@ body {
     const ctx = canvas.getContext('2d');
     const parent = canvas.parentElement;
     const wave_container = new WaveContainer();
+    let user_clicked = false;
 
     var boundaries;
     setupCanvas();
